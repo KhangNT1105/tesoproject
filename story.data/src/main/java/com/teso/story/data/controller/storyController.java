@@ -41,7 +41,6 @@ public class storyController implements TStoryDataService.Iface {
     @Autowired
     chapterRepository chapterRepo;
 
-
     private static final DozerBeanMapper dozerMapper = new DozerBeanMapper();
 
     //Service lấy tất cả truyện
@@ -102,7 +101,7 @@ public class storyController implements TStoryDataService.Iface {
     //Service lấy truyện phân trang
     @Override
     public String getStoryByPageable(int itemPerPage, int pageNumber) throws TException {
-        return responseUtil.success(responseUtil.responseListStory(storyRepo.findStoryByPageable(itemPerPage, pageNumber)));
+        return responseUtil.success(responseUtil.responseListStory(storyRepo.findStoryByPageable(itemPerPage * (pageNumber - 1), itemPerPage)));
 
     }
 

@@ -56,7 +56,8 @@ public class StoryController {
         return client_data.getAllCategories();
     }
 
-    //Lấy truyện từ tên 
+    //Lấy truyện từ tên (lấy tất cả truyện có param name)
+    //Vd : name :"Anh"=> [Anh yêu em nhất , Anh nhớ em, Anh chàng đẹp trai]
     @GetMapping(value = "/getstorybyname", produces = "appication/json")
     public String getStoryByName(HttpServletRequest request) throws TException {
         String name = request.getParameter("name");
@@ -146,11 +147,8 @@ public class StoryController {
         }
     }
 
-    @PostMapping(value = "/poststory", produces = "application/json")
-    public String postStory(@Valid @RequestBody storyLib storyLib) throws TException {
-        return client_data.postStory(storyLib);
-    }
 
+    //Tạo author mới
     @PostMapping(value = "/postauthor", produces = "application/json")
     public String postAuthor(@Valid @RequestBody authorLib authorLib) throws TException {
         return client_data.postAuthor(authorLib);
